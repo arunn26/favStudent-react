@@ -1,8 +1,8 @@
-import Header from "./pages/Header"
+// import Header from "./pages/Header"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-// import Fav from "./Fav"
-import Landing from "./pages/landing"
+import Fav from "./Fav"
+import Landing from "./landing"
 function App()
 {
     return (
@@ -10,11 +10,11 @@ function App()
           
         
         <BrowserRouter>
-        <Header/>
+        {/* <Header/> */}
         {/* <Landing/> */}
         <Routes>                
                 <Route path='/' element={<Landing/>}></Route>
-                <Route path='/fav' element={<></>}></Route>
+                <Route path='/fav' element={<Fav/>}></Route>
     
         </Routes>
         </BrowserRouter>        

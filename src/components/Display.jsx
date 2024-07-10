@@ -1,10 +1,24 @@
 import { useContext, useState } from "react";
 import { ArrContext } from "./ArrContextProvider";
-import Fav from "../Fav"
+// import Fav from "../Fav"
+import { useNavigate } from "react-router-dom"
+
 
 function Display() {
     const { activityArr } = useContext(ArrContext)
     const [favArr, setFavArr] = useState([])
+
+    const navigate = useNavigate()
+
+    function handleStudent()
+    {
+        navigate("/")
+    }  
+
+    function handleFavourite()
+    {
+        navigate("/fav", { state: { favArr } })
+    }  
 
     function updateList(item) {
         // const newFavArr = [...favArr, item];
@@ -15,6 +29,11 @@ function Display() {
 
     return (
         <>
+        <div className="flex gap-9 m-3 bg">            
+<h1 className="text-3xl no-underline hover:underline" onClick={handleStudent}>Students list </h1>
+<h1 className="text-3xl no-underline hover:underline" onClick={handleFavourite} >Favourites </h1>
+
+        </div>
             <div>
                 {
                     activityArr.map(function (item, index) {
@@ -30,7 +49,7 @@ function Display() {
                     )
                 }
             </div>
-            <Fav favArr={favArr} />
+            {/* <Fav favArr={favArr} /> */}
         </>
     )
 }
