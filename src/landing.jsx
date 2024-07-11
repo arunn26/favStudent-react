@@ -1,13 +1,10 @@
 import AddButton from "./components/AddButton"
-import Display from "./components/Display"
 import ArrContextProvider from "./components/ArrContextProvider"
-function Landing()
-{
-    return(
+function Landing() {
+    return (
         <>
-                <ArrContextProvider>            
-            <AddButton/>
-            <Display/> 
+            <ArrContextProvider>
+                <AddButton />
             </ArrContextProvider>
         </>
     )

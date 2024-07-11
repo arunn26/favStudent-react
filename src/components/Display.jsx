@@ -1,39 +1,40 @@
-import { useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { ArrContext } from "./ArrContextProvider";
 // import Fav from "../Fav"
 import { useNavigate } from "react-router-dom"
 
+const NavigationContext = createContext()
 
-function Display() {
+function Display(data) {
     const { activityArr } = useContext(ArrContext)
     const [favArr, setFavArr] = useState([])
 
     const navigate = useNavigate()
 
-    function handleStudent()
-    {
-        navigate("/")
-    }  
+    const handleStudent = () => navigate("/");
+    const handleFavourite = () => navigate("/fav", { state: { favArr } });
 
-    function handleFavourite()
-    {
-        navigate("/fav", { state: { favArr } })
-    }  
+    // function handleStudent()
+    // {
+    //     navigate("/")
+    // }  
+
+    // function handleFavourite()
+    // {
+    //     navigate("/fav", { state: { favArr } })
+    // }  
 
     function updateList(item) {
-        // const newFavArr = [...favArr, item];
-        // setFavArr(newFavArr);
         setFavArr([...favArr, item])
         console.log(item);
     }
 
     return (
         <>
-        <div className="flex gap-9 m-3 bg">            
-<h1 className="text-3xl no-underline hover:underline" onClick={handleStudent}>Students list </h1>
-<h1 className="text-3xl no-underline hover:underline" onClick={handleFavourite} >Favourites </h1>
-
-        </div>
+            <NavigationContext.Provider value={{ handleStudent, handleFavourite }}>
+                {data.children}
+            </NavigationContext.Provider>
+            {/* <Header handleStudent={handleStudent} handleFavourite={handleFavourite} /> */}
             <div>
                 {
                     activityArr.map(function (item, index) {
@@ -54,4 +55,5 @@ function Display() {
     )
 }
 
-export default Display
+export { NavigationContext }
+export default Display;
